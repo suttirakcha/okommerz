@@ -6,7 +6,7 @@
 
 <h1 class='text-4xl font-bold text-center mb-10'>Products</h1>
 
-<section class='grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-y-10 lg:gap-10'>
+<section class='grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 lg:gap-10'>
   <div class='col-span-1'>
     <div class='flex flex-col gap-y-2'>
       <label for='filter'>Filter</label>
@@ -17,8 +17,8 @@
       </select>
     </div>
   </div>
-  <div class='col-span-2 xl:col-span-3'>
-    <div class='grid lg:grid-cols-2 xl:grid-cols-3 gap-8'>
+  <div class='col-span-3 xl:col-span-4'>
+    <div class='grid lg:grid-cols-2 xl:grid-cols-3 gap-4'>
       {% if products|length > 0 %}
         {% for product in products %}
           <div class="card bg-base-100 hover:shadow-lg border overflow-hidden">

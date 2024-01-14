@@ -1,5 +1,9 @@
 :root {
-    --header-height:80px
+    --header-height:80px;
+}
+
+* {
+    font-family:'Plus Jakarta Sans', sans-serif
 }
 
 .page-container {
@@ -9,7 +13,7 @@
 
 .main-body {
     margin-top:var(--header-height);
-    padding:60px 40px;
+    padding:80px;
     box-sizing:content-box;
 }
 
