@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{% static 'style.css' %}" rel="stylesheet">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.6.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <header class='bg-blue-200 px-10 py-4 w-full' id='header'>
+    <div class='page-container flex items-center justify-between w-full'>
+      <a href="/">
+        <h1 class='text-3xl font-bold inline-block'>Okommerz</h1>
+      </a>
+      <nav class='flex items-center gap-x-6'>
+        {% include 'cart.html' %}
+      </nav>
+    </div>
+  </header>
+  {% block hero %}{% endblock %}
+  <main class='page-container main-body'>
+    {% block content %}
+    {% endblock %}
+  </main>
+  <footer class="px-10 py-16 bg-neutral text-neutral-content">
+    <div class='page-container footer'>
+      <aside>
+        <h1 class='text-3xl font-bold'>Okommerz</h1>
+        <p>An e-commerce platform for your businesses</p>
+      </aside>
+      <nav>
+        <header class="footer-title">Services</header> 
+        <a class="link link-hover">Branding</a>
+        <a class="link link-hover">Design</a>
+        <a class="link link-hover">Marketing</a>
+        <a class="link link-hover">Advertisement</a>
+      </nav> 
+      <nav>
+        <header class="footer-title">Company</header> 
+        <a class="link link-hover">About us</a>
+        <a class="link link-hover">Contact</a>
+        <a class="link link-hover">Jobs</a>
+        <a class="link link-hover">Press kit</a>
+      </nav> 
+      <nav>
+        <header class="footer-title">Legal</header> 
+        <a class="link link-hover">Terms of use</a>
+        <a class="link link-hover">Privacy policy</a>
+        <a class="link link-hover">Cookie policy</a>
+      </nav>
+    </div>
+    <div class='page-container mt-10'>
+      <h3 class='text-sm'>&copy; 2024 Okommerz</h3>
+    </div>
+  </footer>
+
+  <script>
+    function backToTop(){
+      window.scrollTo(0,0);
+    }
+
+    let header = document.getElementById("header");
+
+    let overlay = document.getElementById("navbar-mobile-overlay");
+    let navbar = document.getElementById("navbar-mobile-menu")
+
+    window.addEventListener('scroll', function(){
+      if (window.scrollY > 100){
+        header.classList.add("active")
+      } else {
+        header.classList.remove("active")
+      }
+    })
+
+    function showNavbarMobile(){
+      overlay.classList.add("active");
+      navbar.classList.add("active");
+    }
+
+    function hideNavbarMobile(){
+      overlay.classList.remove("active");
+      navbar.classList.remove("active");
+    }
+  </script>
+</body>
+</html>

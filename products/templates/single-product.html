@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ products.product_name }}{% endblock %}
+
+{% block content %}
+
+<section class='grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-16'>
+  <section>
+    {% if products.product_image %}
+      <img class='rounded-md' src={{ products.product_image.url }}>
+    {% else %}
+       <div class='w-full h-[600px] rounded-md bg-gray-200'></div>
+    {% endif %}
+  </section>
+  <section class='flex flex-col gap-y-4'>
+    <h2>{{ products.product_category }}</h2>
+    <div class='flex flex-col'>
+      <h1 class='text-4xl font-bold mb-1'>{{ products.product_name }}</h1>
+      <p>{{ products.description }}</p>
+    </div>
+
+    {% if products.sales_price %}
+    <div class='inline-flex items-center gap-x-2'>
+      <p class='line-through text-red-400 text-xs'>฿{{ products.regular_price }}</p>
+      <p class='font-medium'>฿{{ products.sales_price }}</p>
+    </div>
+    {% else %}
+      <p class='font-medium'>฿{{ products.regular_price }}</p>
+    {% endif %}
+
+    <button class="btn btn-primary w-full text-lg">Add to cart</button>
+
+    {% if products.additional_detail %}
+    <div class="collapse bg-base-200 collapse-arrow">
+      <input type="checkbox" /> 
+      <div class="collapse-title text-lg font-medium">
+        Additional details
+      </div>
+      <div class="collapse-content"> 
+        {{ products.additional_detail }}
+      </div>
+    </div>
+    {% endif %}
+  </section>
+</section>
+
+{% endblock %}
