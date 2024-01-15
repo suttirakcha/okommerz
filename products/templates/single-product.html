@@ -7,7 +7,7 @@
 <section class='grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-16'>
   <section>
     {% if products.product_image %}
-      <img class='rounded-md' src={{ products.product_image.url }}>
+      <img class='rounded-md w-full' src={{ products.product_image.url }}>
     {% else %}
        <div class='w-full h-[600px] rounded-md bg-gray-200'></div>
     {% endif %}
@@ -28,7 +28,7 @@
       <p class='font-medium'>฿{{ products.regular_price }}</p>
     {% endif %}
 
-    <button class="btn btn-primary w-full text-lg">Add to cart</button>
+    <button class="btn btn-neutral w-full text-lg">Add to cart</button>
 
     {% if products.additional_detail %}
     <div class="collapse bg-base-200 collapse-arrow">

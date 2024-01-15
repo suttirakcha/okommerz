@@ -15,22 +15,35 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <header class='bg-blue-200 px-20 py-4 w-full' id='header'>
+  <header class='bg-blue-200 px-10 lg:px-20 py-4 w-full' id='header'>
     <div class='page-container flex items-center justify-between w-full'>
       <a href="/">
         <h1 class='text-3xl font-bold inline-block'>Okommerz</h1>
       </a>
       <nav class='flex items-center gap-x-6'>
+        {% if request.user.is_authenticated %}
+          <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="whitespace-pre">Hello, {{ user.first_name }}</div>
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-2">
+              <li><a>My account</a></li>
+              <li><a href='/logout'>Log out</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <a href='/login'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+          </a>
+        {% endif %}
         {% include 'cart.html' %}
       </nav>
     </div>
   </header>
   {% block hero %}{% endblock %}
-  <main class='page-container main-body'>
+  <main class='page-container main-body px-10 py-20 lg:p-20'>
     {% block content %}
     {% endblock %}
   </main>
-  <footer class="px-20 py-16 bg-neutral text-neutral-content">
+  <footer class="px-10 lg:px-20 py-16 bg-neutral text-neutral-content">
     <div class='page-container footer'>
       <aside>
         <h1 class='text-3xl font-bold'>Okommerz</h1>

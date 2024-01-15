@@ -13,7 +13,6 @@
 
 .main-body {
     margin-top:var(--header-height);
-    padding:80px;
     box-sizing:content-box;
 }
 
