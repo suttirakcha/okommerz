@@ -26,8 +26,13 @@
             <div tabindex="0" role="button" class="whitespace-pre">Hello, {{ user.first_name }}</div>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-2">
               <li><a>My account</a></li>
-              <li><a href='/logout'>Log out</a></li>
+              <li><a href='/logout' onclick="my_modal_3.showModal()">Log out</a></li>
             </ul>
+            <dialog id="my_modal_3" class="modal">
+              <div class="modal-box p-10">
+                <h3 class="font-bold text-2xl text-center">Logging out...</h3>
+              </div>
+            </dialog>
           </div>
         {% else %}
           <a href='/login'>
