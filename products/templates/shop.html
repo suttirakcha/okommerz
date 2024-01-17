@@ -8,10 +8,11 @@
 
 <section class='grid grid-cols-1 lg:grid-cols-4 xl:grid-cols-5 gap-y-10 lg:gap-10'>
   <div class='col-span-1'>
+    <h2 class='text-2xl font-bold mb-6'>Filter product</h2>
     <div class='flex flex-col gap-y-2'>
-      <label for='filter'>Filter</label>
-      <select class="select select-accent w-full" id='filter'>
-        {% for category in product_category %}
+      <label for='filter' class='font-medium'>Category</label>
+      <select class="select select-info w-full" id='filter'>
+        {% for category in categories %}
         <option value={{ category }}>{{ category }}</option>
         {% endfor %}
       </select>
@@ -37,15 +38,15 @@
                 </a>
                 {% if product.sales_price %}
                 <div class='inline-flex items-center gap-x-2'>
-                  <p class='line-through text-red-400 text-xs'>฿{{ product.regular_price }}</p>
-                  <p>฿{{ product.sales_price }}</p>
+                  <p class='line-through text-red-400 text-sm'>฿{{ product.regular_price }}</p>
+                  <p class='font-medium'>฿{{ product.sales_price }}</p>
                 </div>
                 {% else %}
-                  <p>฿{{ product.regular_price }}</p>
+                  <p class='font-medium'>฿{{ product.regular_price }}</p>
                 {% endif %}
               </div>
               <div class="card-actions">
-                <button class="btn btn-neutral w-full">Add to cart</button>
+                <button class="btn btn-neutral w-full text-base">Add to cart</button>
               </div>
             </div>
           </div>

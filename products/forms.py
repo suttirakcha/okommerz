@@ -1,14 +1,19 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class SignInForm(forms.Form):
     username = forms.CharField(max_length=255)
     password = forms.CharField(max_length=255, widget=forms.PasswordInput)
 
-class SignUpForm(forms.Form):
+class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=255)
     first_name = forms.CharField(max_length=255)
-    surname = forms.CharField(max_length=255)
+    last_name = forms.CharField(max_length=255)
     email = forms.EmailField()
-    password = forms.CharField(max_length=255, widget=forms.PasswordInput)
-    reenter_password = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    password1 = forms.CharField(max_length=255, widget=forms.PasswordInput)
+    password2 = forms.CharField(max_length=255, widget=forms.PasswordInput)
 
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')

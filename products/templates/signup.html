@@ -4,24 +4,43 @@
 
 {% block content %}
 
-<div id='signin-form'>
+<div id='signup-form'>
   <h1 class='text-4xl font-bold text-center mb-10'>Sign up</h1>
 
-  <form method='POST' class='flex flex-col gap-y-2 max-w-xl mx-auto'>
+  <form method='POST' class='flex flex-col gap-y-4 max-w-xl mx-auto'>
     {% csrf_token %}
+
     <div class='flex flex-col gap-y-2'>
-      <label for="id_username" class='text-lg' id='user_label'>Username</label>
+      <label for="id_username" class='text-lg'>Username</label>
       <input type="text" placeholder="Username" class="input input-bordered w-full" name="username" maxlength="255" required="" id="id_username"/>
-      <p id='user_error' class='text-red-500'></p>
+    </div>
+    <div class='flex gap-4'>
+      <div class='flex flex-col gap-y-2 w-full'>
+        <label for="id_first_name" class='text-lg'>First name</label>
+        <input type="text" placeholder="First name" class="input input-bordered w-full" name="first_name" maxlength="255" required="" id="id_first_name">
+      </div>
+      <div class='flex flex-col gap-y-2 w-full'>
+        <label for="id_surname" class='text-lg'>Surname</label>
+        <input type="text" placeholder="Surname" name="last_name" class="input input-bordered w-full" maxlength="255" required="" id="id_surname">
+      </div>
     </div>
     <div class='flex flex-col gap-y-2'>
-      <label for="id_password" class='text-lg' id='pass_label'>Password</label>
-      <input type="password" placeholder="Password" class="input input-bordered w-full" name="password" maxlength="255" required="" id="id_password"/>
-      <p id='pass_error' class='text-red-500'></p>
+      <label for="id_email" class='text-lg'>Email</label>
+      <input type="email" placeholder="Email" name="email" class="input input-bordered w-full" maxlength="255" required="" id="id_email">
     </div>
-    <a class='text-neutral hover:underline'>Forgot password?</a>
-    <p class='text-red-500 text-sm'>{{ message }}</p>
-    <button class='btn btn-neutral'>Submit</button>
+    <div class='flex flex-col gap-y-2'>
+      <label for="id_password" class='text-lg'>Password</label>
+      <input type="password" placeholder="Password" name="password1" autocomplete="new-password" class="input input-bordered w-full" maxlength="255" required="" id="id_password1">
+    </div>
+    <div class='flex flex-col gap-y-2'>
+      <label for="id_password2" class='text-lg'>Confirm password</label>
+      <input type="password" placeholder="Password" name="password2" autocomplete="new-password" class="input input-bordered w-full" required="" id="id_password2">
+    </div>
+    <div class='flex flex-col w-full mb-4'>
+      <p class='text-neutral text-lg w-full text-center'>Already have an account? <a class='link link-info' href='/login'>Log in</a></p>
+    </div>
+    <p class='text-error text-sm'>{{ message }}</p>
+    <button class='btn btn-neutral text-base'>Sign up</button>
   </form>
 </div>
 
