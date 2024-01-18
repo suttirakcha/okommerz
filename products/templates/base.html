@@ -72,7 +72,7 @@
       <nav>
         <header class="footer-title">Legal</header> 
         <a class="link link-hover">Terms of use</a>
-        <a class="link link-hover">Privacy policy</a>
+        <a class="link link-hover" href='/privacy-policy'>Privacy policy</a>
         <a class="link link-hover">Cookie policy</a>
       </nav>
     </div>
@@ -88,9 +88,6 @@
 
     let header = document.getElementById("header");
 
-    let overlay = document.getElementById("navbar-mobile-overlay");
-    let navbar = document.getElementById("navbar-mobile-menu")
-
     window.addEventListener('scroll', function(){
       if (window.scrollY > 100){
         header.classList.add("active")
@@ -98,16 +95,6 @@
         header.classList.remove("active")
       }
     })
-
-    function showNavbarMobile(){
-      overlay.classList.add("active");
-      navbar.classList.add("active");
-    }
-
-    function hideNavbarMobile(){
-      overlay.classList.remove("active");
-      navbar.classList.remove("active");
-    }
   </script>
 </body>
 </html>

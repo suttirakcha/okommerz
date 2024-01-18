@@ -194,3 +194,15 @@
 #nextButton {
     right: 20px;
 }
+
+.search-list {
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(10px)
+}
+
+#amount-product::-webkit-outer-spin-button,
+#amount-product::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

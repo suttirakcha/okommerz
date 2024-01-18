@@ -1,13 +1,13 @@
 <div class="drawer drawer-end">
   <input id="search-drawer" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content">
-    <label for="search-drawer" class='cursor-pointer'>
+    <label for="search-drawer" class='cursor-pointer' onclick='searchItem()'>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
     </label>
   </div> 
   <div class="drawer-side overflow-hidden z-[99]">
     <label for="search-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-    <div class='menu p-6 w-full min-h-full bg-base-200 text-base-content flex flex-col justify-between'>
+    <div class='menu p-6 w-full min-h-full bg-base-200 text-base-content flex flex-col'>
       <div class='flex lg:grid grid-cols-3 items-center'>
         <div></div>
         <input type="text" placeholder="Search products" class="input input-bordered w-full max-w-lg" />
@@ -15,6 +15,22 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </label>
       </div>
+      <div class='flex flex-col gap-y-2'>
+
+      </div>
     </div>
   </div>
 </div>
+<script>
+  function searchItem(){
+    let searchResults = document.querySelectorAll('.search-list')
+    for (let i = 0; i < searchResults.length; i++){
+      let initTran = 100;
+      searchResults[i].style.transform = "translateY(0%)";
+      searchResults[i].style.opacity = 1;
+      searchResults[i].style.visibility = 'visible';
+      searchResults[i].style.transitionDuration = "300ms";
+      searchResults[i].style.transitionDelay = initTran * (i + 1) + "ms";
+    }
+  }
+</script>

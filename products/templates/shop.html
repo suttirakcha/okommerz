@@ -10,12 +10,20 @@
   <div class='col-span-1'>
     <h2 class='text-2xl font-bold mb-6'>Filter product</h2>
     <div class='flex flex-col gap-y-2'>
-      <label for='filter' class='font-medium'>Category</label>
-      <select class="select select-info w-full" id='filter'>
+      <label for='filter_cate' class='font-medium'>Category</label>
+      <select class="select select-info w-full" id='filter_cate'>
         {% for category in categories %}
         <option value={{ category }}>{{ category }}</option>
         {% endfor %}
       </select>
+    </div>
+    <div class='flex flex-col gap-y-2 mt-4'>
+      <label for='filter_price' class='font-medium'>Price</label>
+      <input type="range" min="0" max="100" value="40" class="range range-xs" id='filter_price' step='10'/> 
+      <div class='flex justify-between items-center'>
+        {% comment %} <span>฿{{ products.amount|min }}</span>
+        <span>฿{{ products.amount|max }}</span> {% endcomment %}
+      </div>
     </div>
   </div>
   <div class='col-span-3 xl:col-span-4'>
@@ -25,7 +33,7 @@
           <div class="card bg-base-100 hover:shadow-lg border overflow-hidden">
             <a href="product/{{ product.id }}">
             {% if product.product_image %}
-              <figure><img src="{{ product.product_image.url }}" alt="{{ product.product_image.url }}" class='min-h-[300px] object-cover'/></figure>
+              <figure><img src="{{ product.product_image.url }}" alt="{{ product.product_image.url }}" class='min-h-[300px] h-[300px] object-cover w-full'/></figure>
             {% else %}
               <div class='bg-gray-200 max-w-full min-h-[300px] h-full'></div>
             {% endif %}

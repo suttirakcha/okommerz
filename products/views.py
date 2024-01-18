@@ -4,16 +4,19 @@ from django.shortcuts import render
 from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, user_logged_out
 from django.contrib.auth.models import User
+from django.contrib import messages
 from .models import *
 from . import forms
 
 # Create your views here.
 
 def shop(request):
+    num_of_products = 6
     carousels = MarketingCampaign.objects.all()
     categories = ProductCategory.objects.all()
-    products = ProductItem.objects.filter()
-    return render(request, 'shop.html', {'carousels': carousels, 'products': products, 'categories': categories})
+    products = ProductItem.objects.all()
+
+    return render(request, 'shop.html', {'carousels': carousels, 'products': products, 'categories': categories, 'num_of_products': num_of_products})
 
 def single_product(request, pk):
     products = get_object_or_404(ProductItem, pk=pk)
@@ -70,7 +73,7 @@ def signup_acc(request):
                 form.add_error('confirm_password', 'Passwords do not match')
                 error_message = 'Passwords do not match'
         else: 
-            error_message = 'There was an error while signing in. Please try again.'
+            error_message = 'There was an error while signing up. Please try again.'
     else:
         form = forms.SignUpForm()
 
@@ -83,3 +86,6 @@ def logout_acc(request):
     logout(request)
     if user_logged_out:
         return HttpResponseRedirect(redirect_to='/')
+
+def privacy_policy(request):
+    return render(request, 'privacy-policy.html')

@@ -9,6 +9,7 @@
 
   <form method='POST' class='flex flex-col gap-y-4 max-w-xl mx-auto'>
     {% csrf_token %}
+
     <div class='flex flex-col gap-y-2'>
       <label for="id_username" class='text-lg'>Username</label>
       <input type="text" placeholder="Username" class="input input-bordered w-full" name="username" maxlength="255" required="" id="id_username"/>
