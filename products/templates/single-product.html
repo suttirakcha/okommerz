@@ -1,61 +1,63 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ products.product_name }}{% endblock %}
+{% block title %}{{ product.product_name }}{% endblock %}
 
 {% block content %}
 
 <section class='grid grid-cols-1 lg:grid-cols-2 gap-y-10 lg:gap-16'>
   <section>
-    {% if products.product_image %}
-      <img class='rounded-md w-full' src={{ products.product_image.url }}>
+    {% if product.product_image %}
+      <img class='rounded-md w-full' src={{ product.product_image.url }}>
     {% else %}
        <div class='w-full h-[600px] rounded-md bg-gray-200'></div>
     {% endif %}
   </section>
   <section class='flex flex-col gap-y-4'>
-    <h2>{{ products.product_category }}</h2>
+    <h2>{{ product.product_category }}</h2>
     <div class='flex flex-col'>
-      <h1 class='text-3xl font-bold mb-2'>{{ products.product_name }}</h1>
-      {% if products.description|length > 150 %}
-        <span id="shorterDescription" style="display: inline">{{ products.description|slice:":150" }}...</span>
-        <span id="fullDescription" style="display: none">{{ products.description }}</span>
+      <h1 class='text-3xl font-bold mb-2'>{{ product.product_name }}</h1>
+      {% if product.description|length > 150 %}
+        <span id="shorterDescription" style="display: inline">{{ product.description|slice:":150" }}...</span>
+        <span id="fullDescription" style="display: none">{{ product.description }}</span>
         <a id="seeMoreBtn" class='link link-info w-fit' onclick="toggleDescription()">Read more</a>
       {% else %}
-        <span>{{ products.description }}</span>
+        <span>{{ product.description }}</span>
       {% endif %}
     </div>
 
-    {% if products.sales_price %}
+    {% if product.sales_price %}
     <div class='inline-flex items-center gap-x-2'>
-      <p class='line-through text-red-400 text-sm'>฿{{ products.regular_price }}</p>
-      <p class='font-medium'>฿{{ products.sales_price }}</p>
+      <p class='line-through text-red-400 text-sm'>฿{{ product.regular_price }}</p>
+      <p class='font-medium'>฿{{ product.sales_price }}</p>
     </div>
     {% else %}
-      <p class='font-medium'>฿{{ products.regular_price }}</p>
+      <p class='font-medium'>฿{{ product.regular_price }}</p>
     {% endif %}
 
-    <div class='flex gap-x-4 my-4 items-center'>
-      <h3>Quantity:</h3>
-      <div class='flex'>
-        <button class='btn btn-outline rounded-l-full border-r-0' onclick="decreaseAmount()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"/></svg>
-        </button>
-        <input type='number' class='border-neutral border-y w-12 outline-none text-center' id='amount-product' min="1" value="1" max="{{ products.amount }}"/>
-        <button class='btn btn-outline rounded-r-full border-l-0' onclick="increaseAmount()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-        </button>
+    <form>
+      <div class='flex gap-x-4 my-4 items-center'>
+        <h3>Quantity:</h3>
+        <div class='flex'>
+          <div class='btn btn-outline rounded-l-full border-r-0' onclick="decreaseAmount()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"/></svg>
+          </div>
+          <input type='number' class='border-neutral border-y w-12 outline-none text-center' id='id_quantity' name='quantity' min="1" value="1" max="{{ product.amount }}"/>
+          <div class='btn btn-outline rounded-r-full border-l-0' onclick="increaseAmount()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+          </div>
+        </div>
       </div>
-    </div>
-    <button class="btn btn-neutral w-full text-lg">Add to cart</button>
+      <button class="btn btn-neutral w-full text-lg">Add to cart</button>
+    </form>
 
-    {% if products.additional_detail %}
+    {% if product.additional_detail %}
     <div class="collapse bg-base-200 collapse-arrow">
       <input type="checkbox" /> 
       <div class="collapse-title text-lg font-medium">
         Additional details
       </div>
       <div class="collapse-content"> 
-        {{ products.additional_detail }}
+        {{ product.additional_detail }}
       </div>
     </div>
     {% endif %}
@@ -79,7 +81,7 @@
     }
   }
 
-  var productAmount = document.getElementById("amount-product")
+  var productAmount = document.getElementById("id_quantity")
 
   function increaseAmount(){
     productAmount.stepUp()

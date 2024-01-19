@@ -19,8 +19,24 @@ def shop(request):
     return render(request, 'shop.html', {'carousels': carousels, 'products': products, 'categories': categories, 'num_of_products': num_of_products})
 
 def single_product(request, pk):
-    products = get_object_or_404(ProductItem, pk=pk)
-    return render(request, 'single-product.html', {'products':products})
+    product = get_object_or_404(ProductItem, pk=pk)
+    user = request.user
+    form = forms.AddToCartForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        quantity = form.cleaned_data['quantity']
+        cart_item, created = CartItem.objects.get_or_create(
+            user=user,
+            product=product,
+            defaults={'quantity': quantity}
+        )
+
+        if not created:
+            cart_item.quantity += quantity
+            cart_item.save()
+
+        return HttpResponseRedirect(redirect_to='cart/')
+    return render(request, 'single-product.html', {'product':product})
 
 def login_acc(request):
     message = ''
@@ -89,3 +105,34 @@ def logout_acc(request):
 
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
+
+def my_account(request):
+    return render(request, 'my-account.html')
+
+def add_to_cart(request, product_id):
+    product = get_object_or_404(ProductItem, id=product_id)
+    user = request.user
+    form = forms.AddToCartForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        quantity = form.cleaned_data['quantity']
+        cart_item, created = CartItem.objects.get_or_create(
+            user=user,
+            product=product,
+            defaults={'quantity': quantity}
+        )
+
+        if not created:
+            cart_item.quantity += quantity
+            cart_item.save()
+
+        return HttpResponseRedirect(redirect_to='cart/')
+        
+    return render(request, 'api/add_to_cart.html', {'form': form, 'product': product})
+
+def view_cart(request):
+    user = request.user
+    cart_items = CartItem.objects.filter(user=user)
+    total_price = sum(item.product.price * item.quantity for item in cart_items)
+
+    return render(request, 'api/cart.html', {'cart_items': cart_items, 'total_price': total_price})

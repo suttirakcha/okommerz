@@ -18,12 +18,16 @@
       </select>
     </div>
     <div class='flex flex-col gap-y-2 mt-4'>
-      <label for='filter_price' class='font-medium'>Price</label>
-      <input type="range" min="0" max="100" value="40" class="range range-xs" id='filter_price' step='10'/> 
-      <div class='flex justify-between items-center'>
-        {% comment %} <span>฿{{ products.amount|min }}</span>
-        <span>฿{{ products.amount|max }}</span> {% endcomment %}
-      </div>
+      <label for='filter_price' class='font-medium'>Price range</label>
+      <select class="select select-info w-full">
+        <option selected>Select price range</option>
+        <option value='฿0 - ฿100'>฿0 - ฿100</option>
+        <option value='฿101 - ฿200'>฿101 - ฿200</option>
+        <option value='฿201 - ฿300'>฿201 - ฿300</option>
+        <option value='฿301 - ฿400'>฿301 - ฿400</option>
+        <option value='฿401 - ฿500'>฿401 - ฿500</option>
+        <option value='more than ฿500'>more than ฿500</option>
+      </select>
     </div>
   </div>
   <div class='col-span-3 xl:col-span-4'>

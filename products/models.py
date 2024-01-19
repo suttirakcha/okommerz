@@ -1,6 +1,7 @@
 from django.db import models
 from .countries import COUNTRY_CHOICE
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -69,3 +70,11 @@ class MarketingCampaign(models.Model):
 
     def __str__(self):
         return self.campaign_name
+
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(ProductItem, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.quantity} x {self.product} for {self.user.username}"

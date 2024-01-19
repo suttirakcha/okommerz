@@ -201,8 +201,8 @@
     transform:translateY(10px)
 }
 
-#amount-product::-webkit-outer-spin-button,
-#amount-product::-webkit-inner-spin-button {
+#id_quantity::-webkit-outer-spin-button,
+#id_quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
