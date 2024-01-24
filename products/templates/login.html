@@ -20,11 +20,17 @@
     </div>
     <div class='flex flex-col w-full gap-y-4 mb-4'>
       <a class='link link-info inline-block'>Forgot password?</a>
-      <p class='text-neutral text-lg w-full text-center'>Don't have an account? <a class='link link-info' href='/signup'>Sign up</a></p>
+      <p class='text-neutral text-lg w-full text-center'>Don't have an account? <a class='link link-info' href={% url 'signup' %}>Sign up</a></p>
     </div>
     <p class='text-error text-sm'>{{ message }}</p>
-    <button class='btn btn-neutral text-base'>Log in</button>
+    <button class='btn btn-neutral text-base' onclick='my_modal_4.showModal()'>Log in</button>
   </form>
+
+  <dialog id="my_modal_4" class="modal">
+    <div class="modal-box p-10">
+      <h3 class="font-bold text-2xl text-center">Logging in, redirecting to the homepage...</h3>
+    </div>
+  </dialog>
 </div>
 
 {% endblock %}

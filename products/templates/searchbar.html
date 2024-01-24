@@ -16,7 +16,9 @@
         </label>
       </div>
       <div class='flex flex-col gap-y-2'>
-
+        {% for result in results %}
+          <p>{{ result.product_name }}</p>
+        {% endfor %}
       </div>
     </div>
   </div>

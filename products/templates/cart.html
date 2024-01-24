@@ -8,20 +8,36 @@
   <div class="drawer-side overflow-hidden">
     <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
     <div class='menu p-6 w-[480px] min-h-full bg-base-200 text-base-content flex flex-col justify-between'>
-      <div class='flex items-center justify-between'>
-        <h2 class='text-xl font-bold'>Cart</h2>
-        <label class='cursor-pointer' aria-label="close sidebar" for='my-drawer'>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-        </label>
-      </div>
+      <section>
+        <div class='flex items-center justify-between mb-4'>
+          <h2 class='text-xl font-bold'>Cart</h2>
+          <label class='cursor-pointer' aria-label="close sidebar" for='my-drawer'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </label>
+        </div>
+  
+        <div class='h-full flex'>
+          <div class='flex gap-x-4'>
+            {% if product.product_image %}
+              <img src={{ product.product_image.url }} class='w-[120px] h-[120px] rounded-md'>
+            {% endif %}
+            <div class='flex flex-col'>
+              <h2 class='text-lg font-medium'>Hello</h2>
+              <p>฿100.00</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      {% comment %} {% if cart_item|length == 0 %}
       <div class='h-full flex flex-col justify-center items-center gap-y-2'>
         <h1 class='text-xl font-bold'>Your cart is empty</h1>
         <p>Let's go to the shop and browse any products.</p>
       </div>
+      {% endif %} {% endcomment %}
 
-      <div class='invisible'>
-        <button class='btn'>Checkout</button>
+      <div class=''>
+        <button class='btn btn-neutral w-full'>Checkout</button>
       </div>
     </div>
   </div>

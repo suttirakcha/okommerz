@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout, user_logged_out
 from django.contrib.auth.models import User
@@ -35,8 +33,7 @@ def single_product(request, pk):
             cart_item.quantity += quantity
             cart_item.save()
 
-        return HttpResponseRedirect(redirect_to='cart/')
-    return render(request, 'single-product.html', {'product':product})
+    return render(request, 'single-product.html', {'form': form, 'product':product})
 
 def login_acc(request):
     message = ''
@@ -135,4 +132,11 @@ def view_cart(request):
     cart_items = CartItem.objects.filter(user=user)
     total_price = sum(item.product.price * item.quantity for item in cart_items)
 
-    return render(request, 'api/cart.html', {'cart_items': cart_items, 'total_price': total_price})
+    return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
+
+def search(request):
+    search_result = ProductItem.objects.filter()
+    return render(request, 'searchbar.html', {'results': search_result})
+
+def checkout(request):
+    return render(request, 'checkout.html')

@@ -42,11 +42,11 @@
 @keyframes headerAnimWhenScroll {
     from {
         position:fixed;
-        top:-10%;
+        opacity:0;
     }
     to {
         position:fixed;
-        top:0
+        opacity:1
     }
 }
 
@@ -205,4 +205,59 @@
 #id_quantity::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+#form-sec.prev {
+    animation:changeFormAnimPrev 600ms;
+}
+
+#form-sec.next {
+    animation:changeFormAnimNext 600ms;
+}
+
+
+@keyframes changeFormAnimPrev {
+    0% {
+        transform:translateX(0);
+        opacity:1;
+        visibility:visible;
+    }
+    33% {
+        transform:translateX(20px);
+        opacity:0;
+        visibility:hidden;
+    }
+    67% {
+        transform:translateX(-20px);
+        opacity:0;
+        visibility:hidden;
+    }
+    100% {
+        transform:translateX(0);
+        opacity:1;
+        visibility:visible;
+    }
+}
+
+@keyframes changeFormAnimNext {
+    0% {
+        transform:translateX(0);
+        opacity:1;
+        visibility:visible;
+    }
+    33% {
+        transform:translateX(-20px);
+        opacity:0;
+        visibility:hidden;
+    }
+    67% {
+        transform:translateX(20px);
+        opacity:0;
+        visibility:hidden;
+    }
+    100% {
+        transform:translateX(0);
+        opacity:1;
+        visibility:visible;
+    }
 }

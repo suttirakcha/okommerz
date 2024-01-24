@@ -10,34 +10,9 @@
   <form method='POST' class='flex flex-col gap-y-4 max-w-xl mx-auto'>
     {% csrf_token %}
 
-    <div class='flex flex-col gap-y-2'>
-      <label for="id_username" class='text-lg'>Username</label>
-      <input type="text" placeholder="Username" class="input input-bordered w-full" name="username" maxlength="255" required="" id="id_username"/>
-    </div>
-    <div class='flex gap-4'>
-      <div class='flex flex-col gap-y-2 w-full'>
-        <label for="id_first_name" class='text-lg'>First name</label>
-        <input type="text" placeholder="First name" class="input input-bordered w-full" name="first_name" maxlength="255" required="" id="id_first_name">
-      </div>
-      <div class='flex flex-col gap-y-2 w-full'>
-        <label for="id_surname" class='text-lg'>Surname</label>
-        <input type="text" placeholder="Surname" name="last_name" class="input input-bordered w-full" maxlength="255" required="" id="id_surname">
-      </div>
-    </div>
-    <div class='flex flex-col gap-y-2'>
-      <label for="id_email" class='text-lg'>Email</label>
-      <input type="email" placeholder="Email" name="email" class="input input-bordered w-full" maxlength="255" required="" id="id_email">
-    </div>
-    <div class='flex flex-col gap-y-2'>
-      <label for="id_password" class='text-lg'>Password</label>
-      <input type="password" placeholder="Password" name="password1" autocomplete="new-password" class="input input-bordered w-full" maxlength="255" required="" id="id_password1">
-    </div>
-    <div class='flex flex-col gap-y-2'>
-      <label for="id_password2" class='text-lg'>Confirm password</label>
-      <input type="password" placeholder="Password" name="password2" autocomplete="new-password" class="input input-bordered w-full" required="" id="id_password2">
-    </div>
+    {{ form.as_div }}
     <div class='flex flex-col w-full mb-4'>
-      <p class='text-neutral text-lg w-full text-center'>Already have an account? <a class='link link-info' href='/login'>Log in</a></p>
+      <p class='text-neutral text-lg w-full text-center'>Already have an account? <a class='link link-info' href={% url 'login' %}>Log in</a></p>
     </div>
     <p class='text-error text-sm'>{{ message }}</p>
     <button class='btn btn-neutral text-base'>Sign up</button>

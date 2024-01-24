@@ -34,7 +34,8 @@
       <p class='font-medium'>฿{{ product.regular_price }}</p>
     {% endif %}
 
-    <form>
+    <form method='POST'>
+      {% csrf_token %}
       <div class='flex gap-x-4 my-4 items-center'>
         <h3>Quantity:</h3>
         <div class='flex'>
@@ -47,7 +48,7 @@
           </div>
         </div>
       </div>
-      <button class="btn btn-neutral w-full text-lg">Add to cart</button>
+      <button class="btn btn-neutral w-full text-lg" onclick='addToCart()'>Add to cart</button>
     </form>
 
     {% if product.additional_detail %}
@@ -89,6 +90,10 @@
 
   function decreaseAmount(){
     productAmount.stepDown()
+  }
+
+  function addToCart(e){
+    e.preventDefault()
   }
 </script>
 
